@@ -37,3 +37,21 @@ class SaveView(IndexView):
         TOOL.save()
 
         return super(SaveView, self).get(request, *args, **kwargs)
+
+
+class SearchView(TemplateView, AdminMixin):
+
+    template_name = "djinn_i18n/search.html"
+
+    @property
+    def locale(self):
+
+        return self.request.GET.get('locale')
+
+    def list_languages(self):
+
+        return settings.LANGUAGES
+
+    def list_entries(self):
+
+        return TOOL.find_entries(self.request.GET.get('q'), self.locale)

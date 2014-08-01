@@ -39,11 +39,11 @@ setup(name='djinn_i18n',
       test_suite="djinn-i18n",
       entry_points="""\
       [djinn.tool]
-      js=djinn_i18n:get_js
-      css=djinn_i18n:get_css
       info=djinn_i18n:get_info
       [djinn.app]
+      js=djinn_i18n:get_js
       urls=djinn_i18n:get_urls
+      css=djinn_i18n:get_css
       """,
       message_extractors={'.': [
           ('**.html', 'lingua_xml', None),

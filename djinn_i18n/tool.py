@@ -26,7 +26,7 @@ class TransTool(object):
 
         self.tainted = True
 
-        orig_entry = self.entries[msgid]
+        orig_entry = self.entries[locale][msgid]
 
         self.overrides[locale].update(
             msgid, msgstr,
@@ -34,7 +34,7 @@ class TransTool(object):
             tcomment=orig_entry.tcomment
         )
 
-        # update tool
+        # update tool entry
         self.entries[locale][msgid].msgstr = msgstr
 
     def save(self):
@@ -66,6 +66,10 @@ class TransTool(object):
 
     def _list_entries(self, module, locale):
 
+        """List entries by actually reading the po files. Don't overdo
+        this...
+        """
+
         path = self.modules[module]
 
         pofile_path = "%s/%s/LC_MESSAGES/django.po" % (path, locale)
@@ -96,9 +100,22 @@ class TransTool(object):
 
         return _entries
 
-    def find_entry(self, msgid, locale):
+    def find_entries(self, frag, locale):
 
-        return self.entries[locale][msgid]
+        def _filter(entry):
+
+            return frag in "%s %s %s %s" % (entry.msgid, entry.msgstr,
+                                            entry.comment, entry.tcomment)
+
+        return filter(_filter, self.entries[locale].values())
+
+    def is_override(self, entry, locale):
+
+        return self.overrides[locale].has_entry(entry)
+
+    def get_entry(self, msgid, locale):
+
+        return self.entries[locale].get(msgid)
 
 
 TOOL = TransTool()

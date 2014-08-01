@@ -4,6 +4,9 @@
 {% if view.tainted %}
 <a class="btn btn-success" href="{% url 'djinn_i18n_save' %}">Save changes</a>
 {% endif %}
+
+{% include "djinn_i18n/snippets/searchform.html" %}
+
 {% endblock %}
 
 {% block content %}

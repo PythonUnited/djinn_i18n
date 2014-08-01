@@ -1,0 +1,12 @@
+.trans {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    border: 1px solid #555555;
+    border-radius: 3px;
+    box-shadow: 5px 5px 5px #888;
+    min-height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+

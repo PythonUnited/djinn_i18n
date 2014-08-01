@@ -60,3 +60,15 @@ class POFile(polib.POFile):
             )
 
             self.append(entry)
+
+    def append(self, entry):
+
+        """ Append and add to map """
+
+        super(POFile, self).append(entry)
+
+        self._msg_map[entry.msgid] = entry
+
+    def has_entry(self, entry):
+
+        return entry.msgid in self._msg_map.keys()
