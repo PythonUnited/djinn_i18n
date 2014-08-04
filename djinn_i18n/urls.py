@@ -31,5 +31,5 @@ _urlpatterns = patterns(
 
 urlpatterns = patterns(
     '',
-    (r'^i18n/', include(_urlpatterns)),
+    (r'^djinn/i18n/', include(_urlpatterns)),
     )
