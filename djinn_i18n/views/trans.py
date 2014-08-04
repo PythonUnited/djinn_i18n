@@ -1,5 +1,6 @@
+import json
 from django.views.generic import TemplateView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from djinn_core.views.admin import AdminMixin
 from djinn_contenttypes.views.base import AcceptMixin
@@ -35,4 +36,7 @@ class TransView(TemplateView, AdminMixin, AcceptMixin):
 
         TOOL.translate(self.msgid, request.POST.get('msgstr'), self.locale)
 
-        return HttpResponseRedirect(reverse("djinn_i18n_index"))
+        if self.request.is_ajax():
+            return HttpResponse(json.dumps({'status': 'ok'}, skipkeys=True))
+        else:
+            return HttpResponseRedirect(reverse("djinn_i18n_index"))

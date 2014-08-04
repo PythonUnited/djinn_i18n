@@ -1,6 +1,7 @@
 import polib
 from django.conf import settings
 from djinn_i18n.po import load_po
+from djinn_i18n.utils import get_override_base
 
 
 class TransTool(object):
@@ -52,6 +53,9 @@ class TransTool(object):
         _modules = {}
 
         for mod in settings.LOCALE_PATHS:
+
+            if mod == get_override_base():
+                continue
 
             modname = mod.split("/")[-2]
 
