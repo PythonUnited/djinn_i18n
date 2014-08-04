@@ -46,7 +46,7 @@ class TranslateNodeWrapper(Node):
         return """<span data-msgid="%s">%s</span>""" % (token, value)
 
 
-@i18n.register.tag("trans")
-def _do_translate(parser, token):
-
-    return TranslateNodeWrapper(original_do_translate(parser, token))
+#@i18n.register.tag("trans")
+#def _do_translate(parser, token):
+#
+#    return TranslateNodeWrapper(original_do_translate(parser, token))
