@@ -10,3 +10,27 @@ def get_override_base():
 def generate_po_path(base, locale):
 
     return "%s/%s/LC_MESSAGES/django.po" % (base, locale)
+
+
+from django.utils import translation
+from django.utils.translation import trans_real, get_language
+from django.conf import settings
+import gettext
+
+
+def clear_trans_cache():
+
+    try:
+        # Reset gettext.GNUTranslation cache.
+        gettext._translations = {}
+
+        # Reset Django by-language translation cache.
+        trans_real._translations = {}
+
+        # Delete Django current language translation cache.
+        trans_real._default = None
+
+        translation.activate(get_language())
+
+    except AttributeError:
+        pass

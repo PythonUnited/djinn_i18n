@@ -1,8 +1,8 @@
-import json
 from django.views.generic import TemplateView
 from django.conf import settings
-from djinn_i18n.tool import TOOL
 from djinn_core.views.admin import AdminMixin
+from djinn_i18n.tool import TOOL
+from djinn_i18n.utils import clear_trans_cache
 
 
 class IndexView(TemplateView, AdminMixin):
@@ -34,7 +34,9 @@ class SaveView(IndexView):
 
     def get(self, request, *args, **kwargs):
 
-        TOOL.save()
+        TOOL.save(mo=True)
+
+        clear_trans_cache()
 
         return super(SaveView, self).get(request, *args, **kwargs)
 

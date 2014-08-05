@@ -38,11 +38,17 @@ class TransTool(object):
         # update tool entry
         self.entries[locale][msgid].msgstr = msgstr
 
-    def save(self):
+    def save(self, mo=False):
+
+        """ Save the override po files. If mo is true-ish, also compile """
 
         for po in self.overrides.values():
 
             po.save()
+
+            if mo:
+
+                po.save_mo()
 
         self.tainted = False
 
@@ -120,6 +126,12 @@ class TransTool(object):
     def get_entry(self, msgid, locale):
 
         return self.entries[locale].get(msgid)
+
+    def get_entries(self, locale):
+
+        """ List all entries """
+
+        return self.entries[locale]
 
 
 TOOL = TransTool()

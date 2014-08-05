@@ -16,8 +16,9 @@ djinn.i18n.getPosition = function(e, menu) {
 
 	var mouseX = e.clientX, mouseY = e.clientY;
 	var boundsX = $(window).width(), boundsY = $(window).height();
-	var menuWidth = menu.find('.dropdown-menu').outerWidth();
-	var menuHeight = menu.find('.dropdown-menu').outerHeight();
+
+	var menuWidth = menu.outerWidth();
+	var menuHeight = menu.outerHeight();
 
 	var tp = {"position": "absolute"};
 	var Y, X, parentOffset;
@@ -51,20 +52,23 @@ djinn.i18n.getPosition = function(e, menu) {
 
 $(document).ready(function() {
 
-  //$("#ctxmenu").click($(this).hide());
+  $("#ctxmenu .close").click(function(e) {
+    e.preventDefault();
+    $("#ctxmenu").hide();
+  });
 
   $("[data-msgid]").each(function(idx, elt) {
 
     elt = $(elt);
 
-    elt.parent().on("contextmenu", function(e) {
+    $(document).on("contextmenu", "[data-msgid]", function(e) {
 
       e.preventDefault();
 
       return false;
     });
 
-    elt.parent().on("mousedown", function(e) { 
+    $(document).on("mousedown", "[data-msgid]", function(e) {
 
       if (e.button == 2) { 
 
@@ -72,8 +76,10 @@ $(document).ready(function() {
         
         var tgt = $(e.currentTarget);
         
-        $("#ctxmenu").find("a").attr(
-          "href", "/i18n/trans/" + elt.data("msgid") + "/nl_NL/");
+        var msgid = tgt.data("msgid");
+
+        $("#ctxmenu ul").html(
+          '<li><a class="modal-action" href="/djinn/i18n/trans/' + msgid + '/">Translate \'' + msgid + '\'</a></li>');
 
         $("#ctxmenu").css(djinn.i18n.getPosition(e, $("#ctxmenu")));
 

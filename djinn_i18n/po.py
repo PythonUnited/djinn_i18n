@@ -48,6 +48,12 @@ class POFile(polib.POFile):
         for entry in self:
             self._msg_map[entry.msgid] = entry
 
+    def save_mo(self):
+
+        mopath = "%s.mo" % os.path.splitext(self.fpath)[0]
+
+        self.save_as_mofile(mopath)
+
     def update(self, msgid, msgstr, **kwargs):
 
         if msgid in self._msg_map.keys():
