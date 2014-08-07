@@ -38,6 +38,8 @@ class TransTool(object):
         # update tool entry
         self.entries[locale][msgid].msgstr = msgstr
 
+        self.save(mo=True)
+
     def save(self, mo=False):
 
         """ Save the override po files. If mo is true-ish, also compile """
