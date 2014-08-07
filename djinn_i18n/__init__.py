@@ -3,6 +3,10 @@ from django.template import Node
 from urls import urlpatterns
 
 
+DESCR = """The i18n (internationalisation) tool enables you to override
+translations for the Djinn intranet application"""
+
+
 def get_urls():
 
     return urlpatterns
@@ -22,7 +26,7 @@ def get_info():
 
     return {"name": "i18n",
             "url": "djinn_i18n_index",
-            "description": "Override translations for Djinn applications",
+            "description": DESCR,
             "icon": "flag"}
 
 

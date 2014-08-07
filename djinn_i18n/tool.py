@@ -114,8 +114,10 @@ class TransTool(object):
 
         def _filter(entry):
 
-            return frag in "%s %s %s %s" % (entry.msgid, entry.msgstr,
-                                            entry.comment, entry.tcomment)
+            _text = "%s %s %s %s" % (entry.msgid, entry.msgstr,
+                                     entry.comment, entry.tcomment)
+
+            return frag.lower() in _text.lower()
 
         return filter(_filter, self.entries[locale].values())
 
