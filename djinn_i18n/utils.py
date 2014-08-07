@@ -1,4 +1,7 @@
+import gettext
 from django.conf import settings
+from django.utils import translation
+from django.utils.translation import trans_real, get_language
 
 
 def get_override_base():
@@ -10,12 +13,6 @@ def get_override_base():
 def generate_po_path(base, locale):
 
     return "%s/%s/LC_MESSAGES/django.po" % (base, locale)
-
-
-from django.utils import translation
-from django.utils.translation import trans_real, get_language
-from django.conf import settings
-import gettext
 
 
 def clear_trans_cache():
