@@ -51,10 +51,13 @@ class TranslateNodeWrapper(Node):
 
         token = self.node.filter_expression.token.replace('"', '')
 
-        if self.attr:
-            return """%s" data-msgid="%s""" % (value, token)
-        else:
-            return """<span data-msgid="%s">%s</span>""" % (token, value)
+        # MJB: Even uitgezet omdat alle vertalingen grijs worden in PG ...
+        # if self.attr:
+        #     return """%s" data-msgid="%s""" % (value, token)
+        # else:
+        #     return """<span data-msgid="%s">%s</span>""" % (token, value)
+
+        return """%s""" % (value)
 
 
 @i18n.register.tag("trans")
