@@ -57,7 +57,7 @@ class TranslateNodeWrapper(Node):
             return """<span data-msgid="%s">%s</span>""" % (token, value)
 
 
-@i18n.register.tag("trans")
+#@i18n.register.tag("trans")
 def _do_translate(parser, token):
 
     # TODO: find solution for multiple attrs per element
