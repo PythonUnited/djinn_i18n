@@ -13,7 +13,7 @@ requires = [
     ]
 
 setup(name='djinn_i18n',
-      version="1.0.0",
+      version="1.0.1",
       description='Djinn i18n',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
