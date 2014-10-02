@@ -1,7 +1,29 @@
 import gettext
+import os
 from django.conf import settings
 from django.utils import translation
 from django.utils.translation import trans_real, get_language
+
+
+def get_translatable_apps():
+
+    _apps = {}
+
+    for path in settings.LOCALE_PATHS:
+
+        if path == get_override_base():
+            continue
+
+        parts = path.split(os.path.sep)
+
+        if parts[-1]:
+            _app = parts[-2]
+        else:
+            _app = parts[-3]
+
+        _apps[_app] = path
+
+    return _apps
 
 
 def get_override_base():

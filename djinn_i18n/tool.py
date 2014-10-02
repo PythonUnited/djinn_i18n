@@ -1,7 +1,7 @@
 import polib
 from django.conf import settings
 from djinn_i18n.po import load_po
-from djinn_i18n.utils import get_override_base
+from djinn_i18n.utils import get_translatable_apps
 
 
 class TransTool(object):
@@ -58,18 +58,7 @@ class TransTool(object):
 
         """ List all locale modules and return a map of module, path """
 
-        _modules = {}
-
-        for mod in settings.LOCALE_PATHS:
-
-            if mod == get_override_base():
-                continue
-
-            modname = mod.split("/")[-2]
-
-            _modules[modname] = mod
-
-        return _modules
+        return get_translatable_apps()
 
     def list_entries(self, module, locale):
 
@@ -107,7 +96,7 @@ class TransTool(object):
 
                 self.module_entries[module].append(entry.msgid)
 
-                if not entry.msgid in _entries.keys():
+                if entry.msgid not in _entries.keys():
                     _entries[entry.msgid] = entry
 
         return _entries

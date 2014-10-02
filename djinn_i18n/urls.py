@@ -16,7 +16,7 @@ _urlpatterns = patterns(
         SaveView.as_view(),
         name="djinn_i18n_save"),
 
-    url(r"^trans/(?P<msgid>.*)/(?P<locale>[a-z]{2}_[A-Z]{2})?/?$",
+    url(r"^trans/(?P<locale>[a-z]{2}_[A-Z]{2})?/?$",
         TransView.as_view(),
         name="djinn_i18n_trans"),
 

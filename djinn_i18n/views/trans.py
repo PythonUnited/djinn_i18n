@@ -20,7 +20,7 @@ class TransView(TemplateView, AdminMixin, AcceptMixin):
     @property
     def msgid(self):
 
-        return self.kwargs.get('msgid')
+        return self.request.REQUEST.get('msgid')
 
     @property
     def locale(self):

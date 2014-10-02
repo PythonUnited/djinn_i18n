@@ -20,10 +20,12 @@
   {% endif %}
 
   <div class="form-group">
-    <label for="msgid">Translation</label>
+    <label for="msgstr">Translation</label>
     <textarea class="form-control"
               id="msgstr" name="msgstr">{{ view.entry.msgstr }}</textarea>
   </div>
+
+  <input type="hidden" name="msgid" value="{{ view.entry.msgid }}" />
 
   <button type="submit" class="btn btn-success">Save</button>
   <a href="{% url 'djinn_i18n_index' %}" class="btn btn-warning">Cancel</a>
