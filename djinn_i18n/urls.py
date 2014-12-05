@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls import patterns, include, url
 from views.index import IndexView, SaveView, SearchView
 from views.module import ModuleView
 from views.trans import TransView
