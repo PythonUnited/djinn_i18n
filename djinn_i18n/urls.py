@@ -3,6 +3,7 @@ from views.index import IndexView, SaveView, SearchView
 from views.module import ModuleView
 from views.trans import TransView
 from views.po import POView
+from views.reload import ReloadView
 
 
 _urlpatterns = patterns(
@@ -15,6 +16,10 @@ _urlpatterns = patterns(
     url(r"^save$",
         SaveView.as_view(),
         name="djinn_i18n_save"),
+
+    url(r"^reload$",
+        ReloadView.as_view(),
+        name="djinn_i18n_reload"),
 
     url(r"^trans/(?P<locale>[a-z]{2}(_[A-Z]{2})?)?/?$",
         TransView.as_view(),
