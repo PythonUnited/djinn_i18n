@@ -1,3 +1,7 @@
+1.0.6
+=====
+* newline support in po-file msgid's 
+
 1.0.5
 =====
 * added reload button on i18n index page for 

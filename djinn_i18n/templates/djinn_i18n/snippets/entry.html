@@ -22,7 +22,7 @@
   
   <h4>Translated as:</h4>
   <blockquote>{{  entry.msgstr }}</blockquote>
-  <a href="{% url 'djinn_i18n_trans' view.locale %}?msgid={{ entry.msgid }}"
+  <a href="{% url 'djinn_i18n_trans' view.locale %}?msgid={{ entry.msgid|urlencode }}"
      class="btn btn-xs btn-success">
     <i class="fa fa-flag"></i> Translate
   </a>

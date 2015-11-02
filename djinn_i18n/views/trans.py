@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import get_language
 from djinn_core.views.admin import AdminMixin
 from djinn_i18n.tool import TOOL
+from urllib import unquote
 
 
 class TransView(TemplateView, AdminMixin):
@@ -19,7 +20,7 @@ class TransView(TemplateView, AdminMixin):
     @property
     def msgid(self):
 
-        return self.request.REQUEST.get('msgid')
+        return unquote(self.request.REQUEST.get('msgid'))
 
     @property
     def locale(self):
