@@ -1,4 +1,4 @@
-1.0.6
+1.0.7
 =====
 * newline support in po-file msgid's 
 
