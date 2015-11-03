@@ -1,3 +1,7 @@
+1.0.8
+=====
+* now supporting unicode in msgid's as well 
+
 1.0.7
 =====
 * newline support in po-file msgid's 
