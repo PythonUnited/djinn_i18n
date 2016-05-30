@@ -37,5 +37,13 @@ class ReloadView(IndexView, AdminMixin):
 
         except AttributeError, e:
             pass
+        
+        try:
+            from subprocess import Popen
+            from django.conf import settings
+            import os
+            Popen(["/bin/touch", os.path.join(settings.BASE_DIR, "wsgi.py")])
+        except Exception, e:
+            pass
 
         return super(ReloadView, self).get(request, *args, **kwargs)
