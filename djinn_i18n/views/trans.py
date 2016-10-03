@@ -20,7 +20,7 @@ class TransView(TemplateView, AdminMixin):
     @property
     def msgid(self):
 
-        return urlunquote(self.request.REQUEST.get('msgid'))
+        return urlunquote(self.request.GET.get('msgid'))
 
     @property
     def locale(self):
