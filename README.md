@@ -15,4 +15,4 @@ Make sure to add the path to your settings.LOCALE\_PATHS, like so:
 
 or:
 
-    LOCALE_PATHS = [PROJECT_ROOT + "/var/locale"] + LOCALE_PATHS
+    LOCALE_PATHS = [PROJECT_ROOT + "/locale/"] + LOCALE_PATHS

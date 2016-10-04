@@ -6,8 +6,7 @@ from views.po import POView
 from views.reload import ReloadView
 
 
-_urlpatterns = patterns(
-    "",
+_urlpatterns = [
 
     url(r"^$",
         IndexView.as_view(),
@@ -36,12 +35,8 @@ _urlpatterns = patterns(
     url(r"^(?P<module>[\w-]*)/(?P<locale>[\w-]*)/$",
         ModuleView.as_view(),
         name="djinn_i18n_module"),
+]
 
-
-    )
-
-
-urlpatterns = patterns(
-    '',
-    (r'^djinn/i18n/', include(_urlpatterns)),
-    )
+urlpatterns = [
+    url(r'^djinn/i18n/', include(_urlpatterns)),
+]
