@@ -10,6 +10,7 @@
 <h1>Djinn i18n searchresults</h1>
 
 <h2>Entries for '{{ request.GET.q }}'</h2>
+<h3>Target language: {{ view.locale }}</h3>
 
 {% for entry in view.list_entries %}
 {% include "djinn_i18n/snippets/entry.html" %}
