@@ -1,13 +1,12 @@
-from django.conf.urls import patterns, include, url
-from views.index import IndexView, SaveView, SearchView
-from views.module import ModuleView
-from views.trans import TransView
-from views.po import POView
-from views.reload import ReloadView
+from django.conf.urls import include, url
+from .views.index import IndexView, SaveView, SearchView
+from .views.module import ModuleView
+from .views.trans import TransView
+from .views.po import POView
+from .views.reload import ReloadView
 
 
-_urlpatterns = patterns(
-    "",
+_urlpatterns = [
 
     url(r"^$",
         IndexView.as_view(),
@@ -36,12 +35,9 @@ _urlpatterns = patterns(
     url(r"^(?P<module>[\w-]*)/(?P<locale>[\w-]*)/$",
         ModuleView.as_view(),
         name="djinn_i18n_module"),
+]
 
 
-    )
-
-
-urlpatterns = patterns(
-    '',
-    (r'^djinn/i18n/', include(_urlpatterns)),
-    )
+urlpatterns = [
+    url(r'^djinn/i18n/', include(_urlpatterns)),
+]

@@ -1,6 +1,6 @@
 from django.contrib import messages
 from djinn_core.views.admin import AdminMixin
-from index import IndexView
+from .index import IndexView
 
 class ReloadView(IndexView, AdminMixin):
 
@@ -35,7 +35,7 @@ class ReloadView(IndexView, AdminMixin):
             if prev:
                 translation.activate(prev.language())
 
-        except AttributeError, e:
+        except AttributeError as e:
             pass
 
         return super(ReloadView, self).get(request, *args, **kwargs)

@@ -1,6 +1,6 @@
 from django.templatetags import i18n
 from django.template import Node
-from urls import urlpatterns
+from .urls import urlpatterns
 
 
 DESCR = """The i18n (internationalisation) tool enables you to override

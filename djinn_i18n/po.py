@@ -1,6 +1,6 @@
 import polib
 import os
-from utils import generate_po_path, get_override_base
+from .utils import generate_po_path, get_override_base
 
 
 def load_po(locale):
@@ -56,7 +56,7 @@ class POFile(polib.POFile):
 
     def update(self, msgid, msgstr, **kwargs):
 
-        if msgid in self._msg_map.keys():
+        if msgid in list(self._msg_map.keys()):
             self._msg_map[msgid].msgstr = msgstr
         else:
             entry = polib.POEntry(
@@ -77,4 +77,4 @@ class POFile(polib.POFile):
 
     def has_entry(self, entry):
 
-        return entry.msgid in self._msg_map.keys()
+        return entry.msgid in list(self._msg_map.keys())
