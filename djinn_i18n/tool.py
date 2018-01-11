@@ -110,7 +110,7 @@ class TransTool(object):
 
             return frag.lower() in _text.lower()
 
-        return filter(_filter, self.entries[locale].values())
+        return list(filter(_filter, self.entries[locale].values()))
 
     def is_override(self, entry, locale):
 

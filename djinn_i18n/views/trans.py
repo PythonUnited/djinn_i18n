@@ -2,7 +2,11 @@ import json
 from django.utils.http import urlunquote
 from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect, HttpResponse
-from django.core.urlresolvers import reverse
+import django
+if django.VERSION < (1, 10):
+    from django.core.urlresolvers import reverse
+else:
+    from django.urls import reverse
 from django.utils.translation import get_language
 from djinn_core.views.admin import AdminMixin
 from djinn_i18n.tool import TOOL
