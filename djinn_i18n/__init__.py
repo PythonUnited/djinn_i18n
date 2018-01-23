@@ -1,5 +1,7 @@
 from django.templatetags import i18n
 from django.template import Node
+from django.urls import reverse
+from django.utils import translation
 
 DESCR = """The i18n (internationalisation) tool enables you to override
 translations for the Djinn intranet application"""
@@ -80,3 +82,23 @@ def _do_translate(parser, token):
 
     return TranslateNodeWrapper(original_do_translate(parser, token),
                                 attr=attr)
+
+#
+# MONKEY PATCH translation system
+# Als vertaling _EMPTY_ bevat, dan wordt de vertaal-string getoond
+#
+original_gettext = translation.gettext
+
+def my_gettext(message):
+
+    translated = original_gettext(message)
+    if translated == '_EMPTY_':
+        url = "%s?locale=nl_NL&q=%s" % (reverse('djinn_i18n_search'), message)
+        translated = '<b>TO BE TRANSLATED:</b> <a href="%s">"%s"</a>' % (
+            url,
+            message
+        )
+    return translated
+
+translation.gettext = my_gettext
+translation.gettext_lazy = translation.ugettext_lazy = translation.lazy(my_gettext, str)

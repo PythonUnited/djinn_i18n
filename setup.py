@@ -9,7 +9,8 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 requires = [
     'django',
     'djinn_core',
-    'polib'
+    'polib',
+    'djinn_auth'
     ]
 
 setup(name='djinn_i18n',
