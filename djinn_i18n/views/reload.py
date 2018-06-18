@@ -6,14 +6,11 @@ class ReloadView(IndexView, AdminMixin):
 
 
     def get(self, request, *args, **kwargs):
-        from django.utils import translation
         from django.utils.translation import trans_real
         try:
             from threading import local
         except ImportError:
             from django.utils._threading_local import local
-
-        _thread_locals = local()
 
         import gettext
 
@@ -29,11 +26,9 @@ class ReloadView(IndexView, AdminMixin):
 
             messages.add_message(request, messages.SUCCESS, "Translations reloaded")
 
-            # Delete translation cache for the current thread,
-            # and re-activate the currently selected language (if any)
-            prev = trans_real._active.pop(_thread_locals, None)
-            if prev:
-                translation.activate(prev.language())
+            # this was added in django 1.7 or 1.8. Much better than the
+            # previous threadlocal approach
+            trans_real.reset_cache(setting='LANGUAGES')
 
         except AttributeError as e:
             pass
