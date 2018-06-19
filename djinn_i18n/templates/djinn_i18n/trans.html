@@ -28,6 +28,13 @@
 
   <input type="hidden" name="msgid" value="{{ view.entry.msgid|urlencode }}" />
 
+    <p>
+        <small>
+            HINT: put <b>_NO_TEXT_</b> in the translation box if you do not want a translation to appear<br>
+            HINT: If you save with empty translation box, the translators-link is shown: 'TO BE TRANSLATED: "..."'
+        </small>
+
+    </p>
   <button type="submit" class="btn btn-success">Save</button>
   <a href="{% url 'djinn_i18n_index' %}" class="btn btn-warning">Cancel</a>
 </form>

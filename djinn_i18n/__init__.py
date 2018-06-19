@@ -92,6 +92,9 @@ original_gettext = translation.gettext
 def my_gettext(message):
 
     translated = original_gettext(message)
+    if translated in ['_NO_TRANS_', '_NO_TEXT_']:
+        return ''
+
     if translated == '_EMPTY_':
         url = "%s?locale=nl_NL&q=%s" % (reverse('djinn_i18n_search'), message)
         translated = '<b>TO BE TRANSLATED:</b> <a href="%s">"%s"</a>' % (

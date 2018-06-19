@@ -49,6 +49,8 @@ def clear_trans_cache():
         # Delete Django current language translation cache.
         trans_real._default = None
 
+        trans_real.reset_cache(setting='LANGUAGES')
+
         translation.activate(get_language())
 
     except AttributeError:
