@@ -1,3 +1,4 @@
+{% load i18n %}
 <form class="pull-right form-inline" role="search" method="GET"
       action="{% url 'djinn_i18n_search' %}">
   <div class="form-group">
@@ -11,11 +12,14 @@
     <input type="hidden" name="locale" value="{{ view.list_languages.0.0 }}" />
     {% endif %}
   </div>
+<p>
   <div class="form-group">
+    <label><b>Find translatable item by ID or transated text</b></label>
     <input class="form-control" type="text" 
            placeholder="Search messages" name="q">
   </div>
-  <button class="btn" type="submit">
-    <i class="fa fa-search"></i>
+  <button class="btn btn-success" type="submit">
+    {% trans "search" %}
   </button>
+</p>
 </form>
