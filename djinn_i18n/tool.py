@@ -72,8 +72,8 @@ class TransTool(object):
                 data_list.append(self.entries[locale][msgid])
             except KeyError as k:
                 entry = polib.POEntry(
-                    msgid = msgid,
-                    msgstr = f"TO BE TRANSLATED: {msgid}"
+                    msgid=msgid,
+                    msgstr=f"TO BE TRANSLATED: {msgid}"
                 )
                 self.entries[locale][msgid] = entry
                 data_list.append(entry)
