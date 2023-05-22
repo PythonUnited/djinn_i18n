@@ -60,10 +60,26 @@ class TransTool(object):
 
         return get_translatable_apps()
 
+    # def list_entries(self, module, locale):
+    #
+    #     return [self.entries[locale][msgid] for msgid in
+    #             self.module_entries[module]]
     def list_entries(self, module, locale):
+        data_list = []
 
-        return [self.entries[locale][msgid] for msgid in
-                self.module_entries[module]]
+        for msgid in self.module_entries[module]:
+            try:
+                data_list.append(self.entries[locale][msgid])
+            except KeyError as k:
+                entry = polib.POEntry(
+                    msgid = msgid,
+                    msgstr = f"TO BE TRANSLATED: {msgid}"
+                )
+                self.entries[locale][msgid] = entry
+                data_list.append(entry)
+                # print(k)
+
+        return data_list
 
     def _list_entries(self, module, locale):
 
