@@ -10,7 +10,6 @@ requires = [
     'django',
     'djinn_core',
     'polib',
-    'djinn_auth'
     ]
 
 setup(name='djinn_i18n',

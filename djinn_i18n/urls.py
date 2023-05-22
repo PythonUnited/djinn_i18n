@@ -1,10 +1,14 @@
 from django.conf.urls import include, url
+from django.conf import settings
 from .views.index import IndexView, SaveView, SearchView
 from .views.module import ModuleView
 from .views.trans import TransView
 from .views.po import POView
 from .views.reload import ReloadView
-from djinn_auth.decorators import superuser_required
+if "djinn_auth" in settings.INSTALLED_APPS:
+    from djinn_auth.decorators import superuser_required
+else:
+    from .decorators import superuser_required
 
 
 _urlpatterns = [
